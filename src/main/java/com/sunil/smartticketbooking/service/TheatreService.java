@@ -23,5 +23,18 @@ public class TheatreService {
 		return theatreRepository.findAll();
 		
 	}
+	
+	public long getTheatreCount() {
+
+	    return theatreRepository.count();
+
+	}
+	
+	public Theatre getTheatreById(Long id) {
+
+	    return theatreRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Theatre Not Found"));
+
+	}
 
 }

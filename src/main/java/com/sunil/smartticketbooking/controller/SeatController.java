@@ -10,19 +10,42 @@ import com.sunil.smartticketbooking.service.SeatService;
 
 @RestController
 @RequestMapping("/api/seats")
+@CrossOrigin("*")
 public class SeatController {
-	
-	@Autowired
-	private SeatService seatService;
-	
-	@PostMapping("/add")
-	public Seat addSeat(@RequestBody Seat seat) {
-		return seatService.addSeat(seat);
-	}
-	
-	@GetMapping
-	public List<Seat>getAllSeats(){
-		return seatService.getAllSeats();
-	}
+
+    @Autowired
+    private SeatService seatService;
+
+    // Add Seat
+    @PostMapping("/add")
+    public Seat addSeat(@RequestBody Seat seat) {
+
+        return seatService.addSeat(seat);
+
+    }
+
+    // Get Seats By Show
+    @GetMapping("/show/{showId}")
+    public List<Seat> getSeatsByShow(@PathVariable Long showId) {
+
+        return seatService.getSeatsByShow(showId);
+
+    }
+
+    // Available Seats Count
+    @GetMapping("/available/count")
+    public long getAvailableSeatCount() {
+
+        return seatService.getAvailableSeatCount();
+
+    }
+
+    // Booked Seats Count
+    @GetMapping("/booked/count")
+    public long getBookedSeatCount() {
+
+        return seatService.getBookedSeatCount();
+
+    }
 
 }

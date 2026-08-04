@@ -32,4 +32,34 @@ public class MovieController {
 
         return movieService.getMovies();
     }
+    
+    @GetMapping("/{id}")
+    public Movie getMovieById(@PathVariable Long id) {
+        return movieService.getMovieById(id);
+    }
+    @DeleteMapping("/{id}")
+    public String deleteMovie(@PathVariable Long id) {
+
+        movieService.deleteMovie(id);
+
+        return "Movie Deleted Successfully";
+
+    }
+    
+    @PutMapping("/{id}")
+    public Movie updateMovie(
+            @PathVariable Long id,
+            @RequestBody Movie movie) {
+
+        return movieService.updateMovie(id, movie);
+
+    }
+    
+    @GetMapping("/count")
+    public long getMovieCount() {
+
+        return movieService.getMovieCount();
+
+    }
+    
 }

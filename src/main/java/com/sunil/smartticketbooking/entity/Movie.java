@@ -19,6 +19,8 @@ public class Movie {
     private String duration;
 
     private String genre;
+    
+    private String poster;
 
 
     public Long getId() {
@@ -68,5 +70,13 @@ public class Movie {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+    
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 }

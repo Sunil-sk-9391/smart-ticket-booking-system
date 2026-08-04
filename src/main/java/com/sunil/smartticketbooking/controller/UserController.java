@@ -1,10 +1,13 @@
 package com.sunil.smartticketbooking.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.sunil.smartticketbooking.dto.LoginRequest;
+import com.sunil.smartticketbooking.dto.LoginResponse;
 import com.sunil.smartticketbooking.entity.User;
 import com.sunil.smartticketbooking.service.UserService;
 
@@ -25,10 +28,35 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 
-        String token = userService.loginUser(request);
+        LoginResponse response = userService.loginUser(request);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(response);
     }
+    
+   
+    @GetMapping("/count")
+    public long getUserCount() {
+
+        return userService.getUserCount();
+
+    }
+    
+    @GetMapping
+    public List<User> getAllUsers() {
+
+        return userService.getAllUsers();
+
+    }
+    
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable Long id) {
+
+        userService.deleteUser(id);
+
+        return "User Deleted Successfully";
+
+    }
+
 }

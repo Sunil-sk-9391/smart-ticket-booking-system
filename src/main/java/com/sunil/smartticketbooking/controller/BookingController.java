@@ -10,21 +10,60 @@ import com.sunil.smartticketbooking.service.BookingService;
 
 @RestController
 @RequestMapping("/api/bookings")
+@CrossOrigin("*")
 public class BookingController {
-	
-	@Autowired
-	private BookingService bookingService;
-	
-	@PostMapping("/book")
-	public Booking bookTicket(@RequestBody Booking booking) {
-		return bookingService.bookTicket(booking);
-	}
-	
-	@GetMapping
-	public List<Booking>getAllBooking(){
-		return bookingService.getAllBookings();
-	}
-	
-	
+
+    @Autowired
+    private BookingService bookingService;
+
+    // Book Ticket
+    @PostMapping
+    public Booking bookTicket(@RequestBody Booking booking) {
+
+        return bookingService.bookTicket(booking);
+
+    }
+
+    // User Bookings
+    @GetMapping("/user/{userId}")
+    public List<Booking> getBookingsByUser(@PathVariable Long userId) {
+
+        return bookingService.getBookingsByUser(userId);
+
+    }
+
+    // Admin - All Bookings
+    @GetMapping("/all")
+    public List<Booking> getAllBookings() {
+
+        return bookingService.getAllBookings();
+
+    }
+
+    // Dashboard Count
+    @GetMapping("/count")
+    public long getBookingCount() {
+
+        return bookingService.getBookingCount();
+
+    }
+
+    // Cancel Booking
+    @PutMapping("/cancel/{bookingId}")
+    public Booking cancelBooking(@PathVariable Long bookingId) {
+
+        return bookingService.cancelBooking(bookingId);
+
+    }
+
+    // Delete Booking
+    @DeleteMapping("/{id}")
+    public String deleteBooking(@PathVariable Long id) {
+
+        bookingService.deleteBooking(id);
+
+        return "Booking Deleted Successfully";
+
+    }
 
 }

@@ -27,5 +27,16 @@ public class TheatreController {
 	public List<Theatre>getAllTheatres(){
 		return theatreService.getAllTheatres();
 	}
+	
+	@GetMapping("/count")
+	public long getTheatreCount() {
+
+	    return theatreService.getTheatreCount();
+
+	}
+	@GetMapping("/{id}")
+	public Theatre getTheatreById(@PathVariable Long id) {
+	    return theatreService.getTheatreById(id);
+	}
 
 }

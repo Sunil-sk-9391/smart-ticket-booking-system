@@ -10,15 +10,36 @@ import com.sunil.smartticketbooking.repository.SeatRepository;
 
 @Service
 public class SeatService {
-	@Autowired
-	private SeatRepository seatRepository;
-	
-	public Seat addSeat(Seat seat) {
-		return seatRepository.save(seat);
-	}
-	
-	public List<Seat>getAllSeats(){
-		return seatRepository.findAll();
-	}
+
+    @Autowired
+    private SeatRepository seatRepository;
+
+    
+    public Seat addSeat(Seat seat) {
+
+        return seatRepository.save(seat);
+
+    }
+
+    
+    public List<Seat> getSeatsByShow(Long showId) {
+
+        return seatRepository.findByShowId(showId);
+
+    }
+
+    
+    public long getAvailableSeatCount() {
+
+        return seatRepository.countByBooked(false);
+
+    }
+
+    
+    public long getBookedSeatCount() {
+
+        return seatRepository.countByBooked(true);
+
+    }
 
 }
