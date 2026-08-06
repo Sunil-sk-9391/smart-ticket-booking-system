@@ -64,10 +64,12 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(Arrays.asList(
-            "http://localhost:5173",
-            "http://localhost:5174"
-        ));
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:5173",
+                "http://localhost:5174",
+                "https://smart-ticket-booking-system-fronten.vercel.app",
+                "https://*.vercel.app"
+            ));
 
         configuration.setAllowedMethods(Arrays.asList(
             "GET",
